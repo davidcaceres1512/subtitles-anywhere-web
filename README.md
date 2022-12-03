@@ -161,6 +161,17 @@ and the way we access it is changing
 </BODY>
 </SAMI>
 ```
+## install DevDependencies
+```
+npm install ts-loader webpack webpack-cli terser-webpack-plugin copy-webpack-plugin
+```
+
+## Develop and deploy project
+```
+yarn run watch
+yarn run build
+yarn run deploy
+```
 
 ### License
 
