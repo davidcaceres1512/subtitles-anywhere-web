@@ -161,7 +161,36 @@ and the way we access it is changing
 </BODY>
 </SAMI>
 ```
+## install DevDependencies
+```
+npm install ts-loader webpack webpack-cli terser-webpack-plugin copy-webpack-plugin
+```
 
+## Develop and deploy project
+```
+yarn run watch
+yarn run build
+yarn run deploy
+```
+
+### Enable legacy OpenSSL provider.
+
+#### On Unix-like (Linux, macOS, Git bash, etc.):
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+#### On Windows command prompt:
+```
+set NODE_OPTIONS=--openssl-legacy-provider
+```
+
+#### On PowerShell:
+```
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+```
+
+visit the issue: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
 ### License
 
 MIT
