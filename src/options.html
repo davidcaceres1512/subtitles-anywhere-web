@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="subAny">
-      <h4>Text track manager:</h4>
+      <h4>Text track manager David:</h4>
       <form id="formInfos">
         <div class="positionOption">
           <label
@@ -84,6 +84,15 @@
               />
               <label for="pickerTxt">Text</label>
             </div>
+            <div class="normalSpaceOption">
+              <input
+                type="radio"
+                tabindex="0"
+                id="pickerFile"
+                name="pickerFile"
+              />
+              <label for="pickerFile">File</label>
+            </div>
           </div>
         </div>
         <hr class="styleHr" />
@@ -108,6 +117,10 @@
             tabindex="0"
             placeholder="Text track URL"
           />
+          <form action="/action_page.php">
+            <input type="file" id="myFile" name="filename">
+            <input type="submit" id="submitFile">
+          </form>
         </div>
         <hr class="styleHr" />
         <div class="positionOption">

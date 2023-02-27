@@ -26,6 +26,9 @@ module.exports = () => ({
       },
     ],
   },
+  /*externals: [
+    'child_process'
+  ],*/
   optimization: {
     minimizer: [new TerserPlugin()],
   },

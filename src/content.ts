@@ -25,6 +25,7 @@ let mouseMoveSubscription: (() => void) | null = null;
 const { checkVideoChanges } = checkDomVideoChanges();
 const { insertStyleSheetRule, cleanStyleSheet } = styleSheetManager();
 
+
 checkVideoChanges(videoElement => {
   if (videoElement == null) {
     cleanStyleSheet();
@@ -122,6 +123,7 @@ checkVideoChanges(videoElement => {
         timeoffset,
         textTrackPicker,
         urlTextTrack,
+        fileTextTrack,
         sizeSub
       } = await getInfosFromLocalStorage([
         "textTrack",
@@ -129,6 +131,7 @@ checkVideoChanges(videoElement => {
         "timeoffset",
         "textTrackPicker",
         "urlTextTrack",
+        "fileTextTrack",
         "sizeSub"
       ]);
       // get informations from url if asked to.
@@ -137,6 +140,7 @@ checkVideoChanges(videoElement => {
         urlTextTrack !== undefined &&
         subtitleType !== undefined
       ) {
+        console.warn("textTrackPicker === URL");
         const resp = await fetch(urlTextTrack);
         const textTrackFromURL = await resp.text();
         // Insert the wanted size for the subtitles
@@ -153,6 +157,7 @@ checkVideoChanges(videoElement => {
         textTrack !== undefined &&
         subtitleType !== undefined
       ) {
+        console.warn("textTrackPicker === LOCAL");
         // Insert the wanted size for the subtitles
         insertStyleSheetRule(
           `.rxp-texttrack-span { font-size: ${sizeSub}px; }`
@@ -162,9 +167,26 @@ checkVideoChanges(videoElement => {
           type: subtitleType,
           timeOffset: Number(timeoffset)
         });
+      } else if (
+        textTrackPicker === "FILE" &&
+        fileTextTrack !== undefined &&
+        subtitleType !== undefined
+      ) {
+
+        console.warn("textTrackPicker === FILE");
+        // Insert the wanted size for the subtitles
+        insertStyleSheetRule(
+          `.rxp-texttrack-span { font-size: ${sizeSub}px; }`
+        );
+        textTrackRenderer.setTextTrack({
+          data: fileTextTrack,
+          type: subtitleType,
+          timeOffset: Number(timeoffset)
+        });
       } else {
         // A mandatory param is not given
         // Lets see how we can handle gracefully the ext's error
+        console.warn("pass warning");
         console.warn(`
           [SUBANY]-Error: Have you gave all the mandatory parameters?
         `);
@@ -173,6 +195,7 @@ checkVideoChanges(videoElement => {
       // Display error in the console for now
       // Lets see how we can handle gracefully the ext's error
       if (e instanceof Error) {
+        
         console.warn(`[SUBANY]-Error: ${e.message}`);
       }
     }

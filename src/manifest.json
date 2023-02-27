@@ -17,13 +17,14 @@
   "manifest_version": 3,
   "minimum_chrome_version": "68",
   "name": "SubAny Web",
-  "host_permissions": ["http://*/*", "https://*/*"],
+  "host_permissions": ["http://*/*", "https://*/*", "http://127.0.0.1:5000/*"],
   "permissions": [ "storage" ],
   "update_url": "https://clients2.google.com/service/update2/crx",
   "version": "0.1.1",
   "web_accessible_resources": [{
   "resources": [ "medias/play.svg", "medias/stop.svg" ],
-   "matches": [],
- "extension_ids": []
+  "matches": ["<all_urls>"]
   }]
 }
+
+
